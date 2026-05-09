@@ -1,21 +1,3 @@
-import sugunawetgriender from '../assets/sugunawetgriender.webp';
-import sugunawetgriender2 from '../assets/sugunawetgriender2.webp';
-import vidiemwetgriender from '../assets/vidiemwetgriender.webp';
-import butterflywetgriender from '../assets/butterflywetgriender.webp';
-import prestigegasstove from '../assets/prestigegasstove.webp';
-import butterflygasstove from '../assets/butterflygasstove.webp';
-import suryagasstove from '../assets/suryagasstove.webp';
-import cromptonfan from '../assets/cromptonfan.webp';
-import orientfan from '../assets/orientfan.webp';
-import suryafan from '../assets/suryafan.webp';
-import samsungtv from '../assets/samsungtv.webp';
-import sonytv from '../assets/sonytv.webp';
-import philipstv from '../assets/philipstv.webp';
-import preethi from '../assets/Preethi Zodiac Mixer Grinder 750W.webp';
-import philipsiron from '../assets/Philips Steam Iron GC1905.webp';
-import havells from '../assets/Havells Aquas Water Purifier.webp';
-import hiflo from '../assets/HiFlo Rechargeable Mosquito Racket.webp';
-
 export const products = [
   // Wet Grinders
   {
@@ -28,7 +10,7 @@ export const products = [
     discount: 25,
     rating: 4.8,
     reviews: 1240,
-    image: sugunawetgriender,
+    image: "/assets/sugunawetgriender.webp",
     inStock: true,
     badge: "Best Seller",
     specs: { "Capacity": "2 Litres", "Motor": "150W", "Material": "Stainless Steel" }
@@ -43,7 +25,7 @@ export const products = [
     discount: 20,
     rating: 4.6,
     reviews: 850,
-    image: vidiemwetgriender,
+    image: "/assets/vidiemwetgriender.webp",
     inStock: true,
     specs: { "Capacity": "2 Litres", "Motor": "140W", "Weight": "12kg" }
   },
@@ -57,7 +39,7 @@ export const products = [
     discount: 20,
     rating: 4.5,
     reviews: 2100,
-    image: butterflywetgriender,
+    image: "/assets/butterflywetgriender.webp",
     inStock: true,
     badge: "New",
     specs: { "Capacity": "2 Litres", "Motor": "150W", "Body": "ABS Plastic" }
@@ -72,7 +54,7 @@ export const products = [
     discount: 16,
     rating: 4.9,
     reviews: 320,
-    image: sugunawetgriender2,
+    image: "/assets/sugunawetgriender2.webp",
     inStock: true,
     badge: "Deal",
     specs: { "Capacity": "5 Litres", "Motor": "0.5 HP", "Type": "Tilting" }
@@ -89,7 +71,7 @@ export const products = [
     discount: 20,
     rating: 4.4,
     reviews: 1500,
-    image: prestigegasstove,
+    image: "/assets/prestigegasstove.webp",
     inStock: true,
     specs: { "Burners": "2", "Material": "Glass Top", "Ignition": "Manual" }
   },
@@ -103,7 +85,7 @@ export const products = [
     discount: 30,
     rating: 4.3,
     reviews: 2800,
-    image: butterflygasstove,
+    image: "/assets/butterflygasstove.webp",
     inStock: true,
     badge: "Best Seller",
     specs: { "Burners": "3", "Material": "Toughened Glass", "Ignition": "Manual" }
@@ -118,7 +100,7 @@ export const products = [
     discount: 20,
     rating: 4.2,
     reviews: 980,
-    image: suryagasstove,
+    image: "/assets/suryagasstove.webp",
     inStock: true,
     specs: { "Burners": "2", "Material": "Stainless Steel", "Ignition": "Manual" }
   },
@@ -134,7 +116,7 @@ export const products = [
     discount: 24,
     rating: 4.5,
     reviews: 5400,
-    image: cromptonfan,
+    image: "/src/assets/cromptonfan.webp",
     inStock: true,
     specs: { "Type": "Ceiling", "Sweep": "1200mm", "Speed": "380 RPM" }
   },
@@ -148,7 +130,7 @@ export const products = [
     discount: 22,
     rating: 4.4,
     reviews: 1200,
-    image: orientfan,
+    image: "/src/assets/orientfan.webp",
     inStock: true,
     specs: { "Type": "Pedestal", "Speed": "1300 RPM", "Oscillation": "Yes" }
   },
@@ -162,7 +144,7 @@ export const products = [
     discount: 28,
     rating: 4.1,
     reviews: 650,
-    image: suryafan,
+    image: "/src/assets/suryafan.webp",
     inStock: true,
     specs: { "Type": "Table", "Speed": "2000 RPM", "Blades": "3" }
   },
@@ -178,7 +160,7 @@ export const products = [
     discount: 27,
     rating: 4.7,
     reviews: 12500,
-    image: samsungtv,
+    image: "/src/assets/samsungtv.webp",
     inStock: true,
     badge: "Best Seller",
     specs: { "Size": "43 inch", "Resolution": "4K Ultra HD", "Smart TV": "Yes" }
@@ -193,7 +175,7 @@ export const products = [
     discount: 16,
     rating: 4.8,
     reviews: 8400,
-    image: sonytv,
+    image: "/src/assets/sonytv.webp",
     inStock: true,
     specs: { "Size": "32 inch", "Resolution": "HD Ready", "Smart TV": "Yes" }
   },
@@ -207,7 +189,7 @@ export const products = [
     discount: 25,
     rating: 4.5,
     reviews: 3200,
-    image: philipstv,
+    image: "/src/assets/philipstv.webp",
     inStock: true,
     badge: "Deal",
     specs: { "Size": "50 inch", "Resolution": "4K UHD", "Smart TV": "Yes" }
@@ -224,7 +206,7 @@ export const products = [
     discount: 19,
     rating: 4.6,
     reviews: 15200,
-    image: preethi,
+    image: "/src/assets/Preethi Zodiac Mixer Grinder 750W.webp",
     inStock: true,
     badge: "Best Seller",
     specs: { "Motor": "750W", "Jars": "5", "Color": "Black" }
@@ -239,7 +221,7 @@ export const products = [
     discount: 20,
     rating: 4.3,
     reviews: 4500,
-    image: philipsiron,
+    image: "/src/assets/Philips Steam Iron GC1905.webp",
     inStock: true,
     specs: { "Type": "Steam", "Power": "1440W", "Soleplate": "Non-stick" }
   },
@@ -253,7 +235,7 @@ export const products = [
     discount: 19,
     rating: 4.4,
     reviews: 890,
-    image: havells,
+    image: "/src/assets/Havells Aquas Water Purifier.webp",
     inStock: true,
     specs: { "Purification": "RO + UV", "Capacity": "7L", "Type": "Wall Mounted" }
   },
@@ -269,7 +251,7 @@ export const products = [
     discount: 28,
     rating: 4.2,
     reviews: 2100,
-    image: hiflo,
+    image: "/src/assets/HiFlo Rechargeable Mosquito Racket.webp",
     inStock: true,
     badge: "Best Seller",
     specs: { "Battery": "1200mAh", "Charge Time": "4 hours", "Warranty": "6 months" }

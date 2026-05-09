@@ -178,7 +178,7 @@ export const products = [
     discount: 27,
     rating: 4.7,
     reviews: 12500,
-    image: samsungtv,
+    image: "/src/assets/samsungtv.webp",
     inStock: true,
     badge: "Best Seller",
     specs: { "Size": "43 inch", "Resolution": "4K Ultra HD", "Smart TV": "Yes" }
@@ -193,7 +193,7 @@ export const products = [
     discount: 16,
     rating: 4.8,
     reviews: 8400,
-    image: sonytv,
+    image: "/src/assets/sonytv.webp",
     inStock: true,
     specs: { "Size": "32 inch", "Resolution": "HD Ready", "Smart TV": "Yes" }
   },
@@ -207,7 +207,7 @@ export const products = [
     discount: 25,
     rating: 4.5,
     reviews: 3200,
-    image: philipstv,
+    image: "/src/assets/philipstv.webp",
     inStock: true,
     badge: "Deal",
     specs: { "Size": "50 inch", "Resolution": "4K UHD", "Smart TV": "Yes" }
@@ -224,7 +224,7 @@ export const products = [
     discount: 19,
     rating: 4.6,
     reviews: 15200,
-    image: preethi,
+    image: "/src/assets/Preethi Zodiac Mixer Grinder 750W.webp",
     inStock: true,
     badge: "Best Seller",
     specs: { "Motor": "750W", "Jars": "5", "Color": "Black" }
@@ -239,7 +239,7 @@ export const products = [
     discount: 20,
     rating: 4.3,
     reviews: 4500,
-    image: philipsiron,
+    image: "/src/assets/Philips Steam Iron GC1905.webp",
     inStock: true,
     specs: { "Type": "Steam", "Power": "1440W", "Soleplate": "Non-stick" }
   },
@@ -253,7 +253,7 @@ export const products = [
     discount: 19,
     rating: 4.4,
     reviews: 890,
-    image: havells,
+    image: "/src/assets/Havells Aquas Water Purifier.webp",
     inStock: true,
     specs: { "Purification": "RO + UV", "Capacity": "7L", "Type": "Wall Mounted" }
   },
@@ -269,7 +269,7 @@ export const products = [
     discount: 28,
     rating: 4.2,
     reviews: 2100,
-    image: hiflo,
+    image: "/src/assets/HiFlo Rechargeable Mosquito Racket.webp",
     inStock: true,
     badge: "Best Seller",
     specs: { "Battery": "1200mAh", "Charge Time": "4 hours", "Warranty": "6 months" }
