@@ -20,6 +20,7 @@ const Checkout = () => {
   const [pincodeStatus, setPincodeStatus] = useState(null); // 'erode', 'external', null
   const [paymentMethod, setPaymentMethod] = useState('cod'); // 'cod' or 'online'
   const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentMessage, setPaymentMessage] = useState('');
 
   const handlePincodeChange = (e) => {
     const val = e.target.value;
@@ -48,49 +49,94 @@ const Checkout = () => {
 
   const payWithRazorpay = () => {
     return new Promise((resolve, reject) => {
-      // Get the Razorpay Key from Vite env (fallback to the hardcoded test key provided in backend/.env)
-      const razorpayKey = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_SqQvZDS6Ko3KA7';
-
-      const options = {
-        key: razorpayKey,
-        amount: cartTotal * 100, // Amount in paise
-        currency: 'INR',
-        name: 'Suguna Wet Grinder',
-        description: 'Order Payment',
-        handler: function (response) {
-          // Payment successful!
-          resolve({
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_signature: response.razorpay_signature,
+      const openRazorpay = async () => {
+        try {
+          const orderResponse = await fetch('/api/create-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ amount: cartTotal, currency: 'INR' })
           });
-        },
-        prefill: {
-          name: address.name,
-          contact: address.phone,
-          email: 'customer@sugunagrinder.com',
-          method: 'upi' // Prefills UPI method immediately
-        },
-        notes: {
-          address: `${address.line1}, ${address.line2}, ${address.city} - ${address.pincode}`
-        },
-        theme: {
-          color: '#fb641b' // Suguna Premium Orange
-        },
-        modal: {
-          ondismiss: function () {
-            reject(new Error('Payment cancelled by user'));
+
+          if (!orderResponse.ok) {
+            throw new Error('Failed to create order');
           }
+
+          const { order_id, amount, currency, key_id } = await orderResponse.json();
+
+          if (!window.Razorpay) {
+            throw new Error('Razorpay SDK not loaded');
+          }
+
+          const options = {
+            key: key_id,
+            order_id,
+            amount,
+            currency,
+            name: 'Suguna Wet Grinder',
+            description: 'Order Payment',
+            handler: async function (response) {
+              try {
+                const verifyResponse = await fetch('/api/verify-payment', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_signature: response.razorpay_signature
+                  })
+                });
+
+                if (!verifyResponse.ok) {
+                  throw new Error('Payment verification failed');
+                }
+
+                const verifyResult = await verifyResponse.json();
+                if (!verifyResult.success) {
+                  throw new Error('Payment verification failed');
+                }
+
+                resolve({
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_signature: response.razorpay_signature
+                });
+              } catch (error) {
+                reject(error);
+              }
+            },
+            prefill: {
+              name: address.name,
+              contact: address.phone,
+              email: 'customer@sugunagrinder.com',
+              method: 'upi'
+            },
+            notes: {
+              address: `${address.line1}, ${address.line2}, ${address.city} - ${address.pincode}`
+            },
+            theme: {
+              color: '#fb641b'
+            },
+            modal: {
+              ondismiss: function () {
+                reject(new Error('Payment cancelled by user'));
+              }
+            }
+          };
+
+          const rzp = new window.Razorpay(options);
+          rzp.open();
+        } catch (error) {
+          reject(error);
         }
       };
 
-      const rzp = new window.Razorpay(options);
-      rzp.open();
+      openRazorpay();
     });
   };
 
   const handlePlaceOrder = async () => {
     setIsProcessing(true);
+    setPaymentMessage('');
     if (paymentMethod === 'online') {
       try {
         const paymentResult = await payWithRazorpay();
@@ -125,7 +171,7 @@ const Checkout = () => {
           } 
         });
       } catch (err) {
-        alert(err.message || 'Payment failed or cancelled.');
+        setPaymentMessage(err.message || 'Payment failed or cancelled.');
       } finally {
         setIsProcessing(false);
       }
@@ -292,6 +338,12 @@ const Checkout = () => {
               >
                 {isProcessing ? 'Processing...' : (paymentMethod === 'cod' ? 'CONFIRM COD ORDER' : `PAY ₹${cartTotal.toLocaleString('en-IN')} SECURELY`)}
               </button>
+
+              {paymentMessage && (
+                <div className={styles.alert} role="alert">
+                  {paymentMessage}
+                </div>
+              )}
             </div>
           )}
         </div>
