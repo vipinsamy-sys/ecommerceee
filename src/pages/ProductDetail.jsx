@@ -9,7 +9,7 @@ import styles from './ProductDetail.module.css';
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart, addToRecentlyViewed, recentlyViewed } = useCart();
+  const { addToCart, addToRecentlyViewed, recentlyViewed, clearCart } = useCart();
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState('');
 
@@ -26,6 +26,7 @@ const ProductDetail = () => {
   if (!product) return <div className="container">Loading...</div>;
 
   const handleBuyNow = () => {
+    clearCart();
     addToCart(product);
     navigate('/checkout');
   };

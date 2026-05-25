@@ -7,13 +7,14 @@ import styles from './ProductCard.module.css';
 const placeholderImg = 'https://via.placeholder.com/400?text=Image+Not+Found';
 
 const ProductCard = ({ product }) => {
-  const { addToCart, toggleCompare, compareList } = useCart();
+  const { addToCart, toggleCompare, compareList, clearCart } = useCart();
   const navigate = useNavigate();
   const [showBuyNow, setShowBuyNow] = useState(false);
 
   const isComparing = compareList.some(p => p.id === product.id);
 
   const handleBuyNow = () => {
+    clearCart();
     addToCart(product);
     setShowBuyNow(true);
     // Show preview then navigate after short delay
