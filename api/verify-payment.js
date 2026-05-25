@@ -1,6 +1,6 @@
-const crypto = require('crypto');
+import crypto from 'crypto';
 
-module.exports = (req, res) => {
+export default function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).end();
   }
@@ -30,4 +30,4 @@ module.exports = (req, res) => {
   }
 
   return res.json({ success: true });
-};
+}
