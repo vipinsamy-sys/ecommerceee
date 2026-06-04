@@ -5,13 +5,14 @@
   --teal: #00B4D8;
   --white: #FFFFFF;
   --gold: #FFB800;
-  --light-gray: #F0F2F5;
-  --border-color: #E0E0E0;
+  --light-gray: #f5f7fa; /* subtle light background */
+  --border-color: #FFB800; /* gold outline */
   --text-dark: #1A1A1A;
   --text-muted: #666666;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --transition: all 0.3s ease;
+  --page-bg: linear-gradient(135deg, #f5f7fa, #e0f7fa);
 }
 
 * {
@@ -22,13 +23,30 @@
 
 body {
   font-family: 'Noto Sans', sans-serif;
-  background-color: var(--light-gray);
+  background: var(--light-gray); /* neutral light background */
   color: var(--text-dark);
   line-height: 1.5;
   overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* Remove gradient background pseudo-element */
+/* body::before will be omitted */
+
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Baloo Thambi 2', cursive;
   font-weight: 700;
 }
@@ -57,20 +75,46 @@ button {
 
 /* Global Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes bounceScale {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 
 /* Skeleton Loading */
@@ -81,6 +125,11 @@ button {
 }
 
 @keyframes loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }

@@ -27,7 +27,7 @@ const Navbar = ({ onCartClick }) => {
 
   return (
     <nav className={styles.navbar}>
-      <div className={`container ${styles.navContainer}`}>
+      <div className={styles.navContainer}>
         <div className={styles.logoPart}>
           <button className={styles.menuBtn} onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X /> : <Menu />}

@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { CheckCircle, Truck, Package, ArrowRight } from 'lucide-react';
 import styles from './OrderConfirmation.module.css';
 
 const OrderConfirmation = () => {
-  const orderId = "ORD" + Math.floor(100000 + Math.random() * 900000);
+  const location = useLocation();
+  const orderId = location.state?.orderId || ("ORD" + Math.floor(100000 + Math.random() * 900000));
+  const paymentMethod = location.state?.paymentMethod || 'cod';
 
   return (
     <div className={`container ${styles.page}`}>
@@ -15,6 +17,11 @@ const OrderConfirmation = () => {
         
         <h1>Order Placed Successfully!</h1>
         <p className={styles.orderId}>Order ID: <strong>{orderId}</strong></p>
+        {paymentMethod === 'online' && (
+          <p className={styles.paymentSuccessText} style={{ color: '#388e3c', fontWeight: 'bold', margin: '0.5rem 0' }}>
+            ✓ Payment Verified via Razorpay UPI
+          </p>
+        )}
         
         <div className={styles.info}>
           <div className={styles.infoItem}>

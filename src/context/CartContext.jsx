@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { products } from '../data/products';
 
 const CartContext = createContext();
 
@@ -66,12 +67,18 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const cartTotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  // Sync stored cart prices with latest prices from products.js
+  const cartWithLatestPrices = cart.map(item => {
+    const prod = products.find(p => p.id === item.id);
+    return prod ? { ...item, price: prod.price } : item;
+  });
+
+  const cartTotal = cartWithLatestPrices.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const cartCount = cartWithLatestPrices.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <CartContext.Provider value={{ 
-      cart, 
+      cart: cartWithLatestPrices, 
       addToCart, 
       removeFromCart, 
       updateQuantity, 
