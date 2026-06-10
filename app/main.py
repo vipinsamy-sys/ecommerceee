@@ -3,12 +3,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv, find_dotenv
 
-from app.database import ping_db
-from app.routes.auth import router as auth_router
-from app.routes.products import router as products_router
-from app.routes.orders import router as orders_router
-from app.routes.admin import router as admin_router
-from app.routes.payment import router as payment_router
+from database import ping_db
+from routes.auth import router as auth_router
+from routes.products import router as products_router
+from routes.orders import router as orders_router
+from routes.admin import router as admin_router
+from routes.payment import router as payment_router
 
 load_dotenv(find_dotenv())
 
