@@ -9,7 +9,7 @@ load_dotenv(os.path.join(os.path.dirname(__file__), '.env'), override=True)
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.database import ping_db
+
 from app.routes.auth import router as auth_router
 from app.routes.products import router as products_router
 from app.routes.orders import router as orders_router
@@ -41,10 +41,7 @@ app.include_router(admin_router)
 app.include_router(payment_router)
 
 
-@app.on_event('startup')
-async def startup_event():
-    await ping_db()
-    print('MongoDB connected')
+
 
 
 @app.get('/')
