@@ -6,8 +6,8 @@ from bson import ObjectId
 from bson.errors import InvalidId
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 
-from database import get_db
-from middleware.auth_middleware import get_admin_user
+from app.database import get_db
+from app.middleware.auth_middleware import get_admin_user
 
 
 router = APIRouter(prefix='/admin', tags=['admin'])

@@ -11,7 +11,7 @@ from pydantic import BaseModel
 # razorpay SDK is not yet installed. Handlers will return a clear error
 # instructing to install the package when it's missing.
 
-from middleware.auth_middleware import get_logged_in_user
+from app.middleware.auth_middleware import get_logged_in_user
 
 load_dotenv(find_dotenv())
 

@@ -6,8 +6,8 @@ from bson.errors import InvalidId
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 
-from database import get_db
-from middleware.auth_middleware import get_logged_in_user
+from app.database import get_db
+from app.middleware.auth_middleware import get_logged_in_user
 
 
 router = APIRouter(prefix='/orders', tags=['orders'])

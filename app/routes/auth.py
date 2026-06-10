@@ -8,7 +8,7 @@ from jose import jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel, EmailStr
 
-from database import get_db
+from app.database import get_db
 
 load_dotenv(find_dotenv())
 
