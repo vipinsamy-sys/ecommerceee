@@ -1,16 +1,24 @@
 import os
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv, find_dotenv
 
-from database import ping_db
-from routes.auth import router as auth_router
-from routes.products import router as products_router
-from routes.orders import router as orders_router
-from routes.admin import router as admin_router
-from routes.payment import router as payment_router
+# Load environment variables before importing app modules that depend on them
+load_dotenv(find_dotenv())
+# Also load the backend-specific .env inside the app folder (override any root values)
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'), override=True)
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.database import ping_db
+from app.routes.auth import router as auth_router
+from app.routes.products import router as products_router
+from app.routes.orders import router as orders_router
+from app.routes.admin import router as admin_router
+from app.routes.payment import router as payment_router
 
 load_dotenv(find_dotenv())
+# Also load the backend-specific .env inside the app folder (override any root values)
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'), override=True)
 
 app = FastAPI(title='Suguna Backend', version='1.0.0')
 
