@@ -47,7 +47,9 @@ app.include_router(payment_router)
 @app.get('/')
 async def root():
     return {'status': 'ok', 'message': 'Suguna Backend Running'}
-
+@app.get("/health")
+async def health():
+    return {"ok": True}
 
 if __name__ == '__main__':
     import uvicorn
