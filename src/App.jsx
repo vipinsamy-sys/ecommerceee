@@ -12,6 +12,11 @@ import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
 import OwnerLogin from './pages/OwnerLogin';
 import OwnerDashboard from './pages/OwnerDashboard';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import { UserRoute, AdminRoute } from './components/ProtectedRoute';
 import ComparePanel from './components/ComparePanel/ComparePanel';
 import CartDrawer from './components/CartDrawer/CartDrawer';
 import { useState } from 'react';
@@ -36,6 +41,10 @@ function App() {
                   <Route path="/order-confirmation" element={<OrderConfirmation />} />
                   <Route path="/owner-login" element={<OwnerLogin />} />
                   <Route path="/owner-dashboard" element={<OwnerDashboard />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/profile" element={<UserRoute><Profile /></UserRoute>} />
+                  <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
                 </Routes>
               </main>
               <ComparePanel />

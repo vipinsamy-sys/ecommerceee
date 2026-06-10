@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, ShoppingCart, Mic, Menu, X, Globe } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
+import { useAuth } from '../../context/AuthContext'
 import styles from './Navbar.module.css';
 import VoiceSearch from '../VoiceSearch/VoiceSearch';
 
@@ -12,6 +13,7 @@ const Navbar = ({ onCartClick }) => {
   const [lang, setLang] = useState('en');
   const { cartCount } = useCart();
   const navigate = useNavigate();
+  const { user, logout } = useAuth()
 
   const handleSearch = (e) => {
     if (e) e.preventDefault();
@@ -63,9 +65,23 @@ const Navbar = ({ onCartClick }) => {
           <Link to="/products" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
             {lang === 'en' ? 'Products' : 'தயாரிப்புகள்'}
           </Link>
-          <Link to="/my-orders" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
+          <Link to="/profile" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
             {lang === 'en' ? 'My Orders' : 'எனது ஆர்டர்கள்'}
           </Link>
+          {user ? (
+            <>
+              <Link to="/profile" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
+                {user.name?.split(' ')[0] || 'Profile'}
+              </Link>
+              <button className={styles.navLink} onClick={logout} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
+              {lang === 'en' ? 'Login' : 'உள்நுழைய'}
+            </Link>
+          )}
           <button className={styles.cartBtn} onClick={() => { onCartClick(); setIsMenuOpen(false); }}>
             <ShoppingCart size={24} />
             {cartCount > 0 && <span className={styles.cartBadge}>{cartCount}</span>}
