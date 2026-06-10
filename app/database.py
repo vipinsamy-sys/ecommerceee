@@ -6,16 +6,6 @@ load_dotenv()
 
 MONGO_URI = os.getenv("MONGO_URI")
 
+print("DEBUG URI =", repr(MONGO_URI))
+
 client = AsyncIOMotorClient(MONGO_URI)
-
-# Database name is automatically taken from the URI
-db = client.get_default_database()
-
-
-async def get_db():
-    return db
-
-
-async def ping_db():
-    await db.command("ping")
-    return db
